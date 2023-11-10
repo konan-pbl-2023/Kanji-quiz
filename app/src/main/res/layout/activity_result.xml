@@ -69,7 +69,7 @@
         app:layout_constraintVertical_bias="0.592" />
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/imageFilterView3"
+        android:id="@+id/kusudama"
         android:layout_width="256dp"
         android:layout_height="209dp"
         android:src="@drawable/kusudama_1170"
