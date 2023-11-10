@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,14 @@ public class ResultActivity  extends AppCompatActivity {
                 trueCount++;
             }
         }
+
+        if (trueCount <  answers.length) {
+            ImageView kusudamaImage = findViewById(R.id.kusudama);
+            ImageView sakuraImage = findViewById(R.id.sakura);
+            kusudamaImage.setVisibility(View.INVISIBLE);
+            sakuraImage.setVisibility(View.INVISIBLE);
+        }
+
         score.setText(String.valueOf(trueCount));
 
         startButton.setOnClickListener(new View.OnClickListener() {
