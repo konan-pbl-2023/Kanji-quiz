@@ -19,6 +19,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        KanjiTable kanjiTable = new KanjiTable(getResources());
+        int min=1000;
+        int max=1009;
+        int n=10;
+        boolean answers[] = new boolean[n];
+
+        kanjiTable.setNum(min, max, n);
+        kanjiTable.setIndex(0);
+        Button nextButton = (Button) findViewById(R.id.nextButton);
+        TextView question = (TextView) findViewById(R.id.question);
+        EditText input = (EditText) findViewById(R.id.inputAnswer);
+        TextView questionNum = (TextView) findViewById(R.id.questionNum);
+
+        questionNum.setText(String.valueOf(kanjiTable.getIndex()+1));
+        question.setText(kanjiTable.getWord());
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                kanjiTable.setKaito(input.getText().toString());
+                answers[kanjiTable.getIndex()] = kanjiTable.check();
+                if(kanjiTable.getIndex()+1<n) {
+                    input.getEditableText().clear();
+                    kanjiTable.nextIndex();
+                    questionNum.setText(String.valueOf(kanjiTable.getIndex() + 1));
+                    question.setText(kanjiTable.getWord());
+                }else{
+                    // 次の画面へ
+                    Intent intent = new Intent(getApplication(),ResultActivity.class);
+                    intent.putExtra("answers", answers);
+                    startActivity(intent);
+                }
+            }
+        });
+        /*
         final int N = 10;
         final String QUESTION = "犬";
         final String ANSER = "inu";
@@ -50,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
+
         });
+        */
     }
 }
