@@ -1,7 +1,9 @@
 package com.example.prototypeapi22;
 
+import android.content.res.Resources;
+
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +19,7 @@ public class KanjiTable {
     int nowIndex=0;
 
 
-    KanjiTable(){
+    KanjiTable(Resources resources){
         // 漢字データを格納しておくもの
         ArrayList<String[]> kanjiList = new ArrayList<String[]>();
         BufferedReader buffReader = null;
@@ -27,7 +29,7 @@ public class KanjiTable {
         setNum(min, max, length);
 
         try {
-            FileInputStream filekaito = new FileInputStream("pre1_reading.csv");	// ファイル読み込み
+            InputStream filekaito = resources.getAssets().open("pre1_reading.csv");	// ファイル読み込み
             InputStreamReader InputStream = new InputStreamReader(filekaito);
             buffReader = new BufferedReader(InputStream);
 
