@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         KanjiTable kanjiTable = new KanjiTable(getResources());
-        int min=1000;
-        int max=1009;
+        int min=0;
+        int max=1632;
         int n=10;
         boolean answers[] = new boolean[n];
 
