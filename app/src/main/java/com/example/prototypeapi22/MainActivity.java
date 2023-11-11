@@ -20,10 +20,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         KanjiTable kanjiTable = new KanjiTable(getResources());
-        int min=0;
-        int max=1632;
         int n=10;
-        boolean answers[] = new boolean[n];
+        int difficulty=0;
+
+        int min=0;      //a:0   b:215   c:826
+        int max=1452;    //a:214 b:825   c:1452
+        if(difficulty==0){
+            min=0;
+            max=214;
+        }else if(difficulty==1){
+            min=215;
+            max=825;
+        }else if(difficulty==2){
+            min=826;
+            max=1452;
+        }
+
 
         kanjiTable.setNum(min, max, n);
         kanjiTable.setIndex(0);
@@ -38,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 kanjiTable.setKaito(input.getText().toString());
-                answers[kanjiTable.getIndex()] = kanjiTable.check();
+                kanjiTable.check();
                 if(kanjiTable.getIndex()+1<n) {
                     input.getEditableText().clear();
                     kanjiTable.nextIndex();
@@ -47,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     // 次の画面へ
                     Intent intent = new Intent(getApplication(),ResultActivity.class);
-                    intent.putExtra("answers", answers);
+                    intent.putExtra("answers", kanjiTable.getAnswers());
                     startActivity(intent);
                 }
             }
