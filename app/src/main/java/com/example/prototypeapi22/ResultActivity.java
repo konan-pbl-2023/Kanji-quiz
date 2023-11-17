@@ -22,6 +22,10 @@ public class ResultActivity  extends AppCompatActivity {
 
         Intent intent = getIntent();
         boolean[] answers = intent.getBooleanArrayExtra("answers");
+        String[] kaitoes = intent.getStringArrayExtra("kaitoes");
+        String[] mondais = intent.getStringArrayExtra("mondais");
+        String[] yomis = intent.getStringArrayExtra("yomis");
+        final int N = intent.getIntExtra("allQuestion", 1);
 
         int trueCount = 0;
         for (boolean answer : answers) {
@@ -41,7 +45,12 @@ public class ResultActivity  extends AppCompatActivity {
 
         startButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),StartActivity.class);
+                Intent intent = new Intent(getApplication(), AnswerActivity.class);
+                intent.putExtra("allQuestion", N);
+                intent.putExtra("answers", answers);
+                intent.putExtra("kaitoes", kaitoes);
+                intent.putExtra("mondais", mondais);
+                intent.putExtra("yomis", yomis);
                 startActivity(intent);
             }
         });
