@@ -46,16 +46,16 @@ public class AnswerActivity extends AppCompatActivity {
             } else {
                 trueAns.setText("❌");
             }
-            if (questionNumber[0] <= 1) {
-                previousButton.setText("POINT");
+            if (1 < questionNumber[0]) {
+                previousButton.setText(defaultPreviousMessage);
             } else {
-                nextButton.setText(defaultPreviousMessage);
+                previousButton.setText("POINT");
             }
 
-            if(N <= questionNumber[0]) {
-                nextButton.setText("HOME");
-            } else {
+            if(questionNumber[0] < N) {
                 nextButton.setText(defaultNextMessage);
+            } else {
+                nextButton.setText("HOME");
             }
         };
         setup.run();
