@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     return source;
                 }
                 for (int i = start; i < end; i++) {
-                    if (!Character.toString(source.charAt(i)).matches("[ぁ-んー]")) {
+                    if (!Character.toString(source.charAt(i)).matches("[ぁ-ん]")) {
                         return "";
                     }
                 }
