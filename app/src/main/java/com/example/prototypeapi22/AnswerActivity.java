@@ -33,7 +33,8 @@ public class AnswerActivity extends AppCompatActivity {
         TextView trueAns = (TextView) findViewById(R.id.true_ans);
         TextView questionNumberText = (TextView) findViewById(R.id.id2);
 
-        String defaultMessage = nextButton.getText().toString();
+        String defaultNextMessage = nextButton.getText().toString();
+        String defaultPreviousMessage = previousButton.getText().toString();
 
         Runnable setup = () -> {
             questionNumberText.setText(String.valueOf(questionNumber[0]));
@@ -45,32 +46,46 @@ public class AnswerActivity extends AppCompatActivity {
             } else {
                 trueAns.setText("❌");
             }
-            previousButton.setEnabled(1 < questionNumber[0]);
-
-            if(N <= questionNumber[0]) {
-                nextButton.setText("HOME");
+            if (1 < questionNumber[0]) {
+                previousButton.setText(defaultPreviousMessage);
             } else {
-                nextButton.setText(defaultMessage);
+                previousButton.setText("POINT");
+            }
+
+            if(questionNumber[0] < N) {
+                nextButton.setText(defaultNextMessage);
+            } else {
+                nextButton.setText("HOME");
             }
         };
         setup.run();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (N <= questionNumber[0]) {
-                    Intent intent = new Intent(getApplication(), StartActivity.class);
-                    startActivity(intent);
-                } else {
+                if (questionNumber[0] < N) {
                     questionNumber[0] += 1;
                     setup.run();
+                } else {
+                    Intent intent = new Intent(getApplication(), StartActivity.class);
+                    startActivity(intent);
                 }
             }
         });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                questionNumber[0] -= 1;
-                setup.run();
+                if (1 < questionNumber[0]) {
+                    questionNumber[0] -= 1;
+                    setup.run();
+                } else {
+                    Intent intent = new Intent(getApplication(),ResultActivity.class);
+                    intent.putExtra("answers", answers);
+                    intent.putExtra("kaitoes", kaitoes);
+                    intent.putExtra("mondais", mondais);
+                    intent.putExtra("yomis", yomis);
+                    intent.putExtra("allQuestion", N);
+                    startActivity(intent);
+                }
             }
         });
     }
