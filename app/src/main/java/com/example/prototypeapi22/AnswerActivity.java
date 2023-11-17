@@ -31,6 +31,7 @@ public class AnswerActivity extends AppCompatActivity {
         TextView ans = (TextView) findViewById(R.id.ans);
         TextView ansMe = (TextView) findViewById(R.id.ans_me);
         TextView trueAns = (TextView) findViewById(R.id.true_ans);
+        String defaultMessage = nextButton.getText().toString();;
 
         Runnable noName = () -> {
             Q_1.setText(mondais[questionNumber[0] - 1]);
@@ -42,6 +43,12 @@ public class AnswerActivity extends AppCompatActivity {
                 trueAns.setText("❌");
             }
             previousButton.setEnabled(1 < questionNumber[0]);
+
+            if(N <= questionNumber[0]) {
+                nextButton.setText("HOME");
+            } else {
+                nextButton.setText(defaultMessage);
+            }
         };
         noName.run();
 
