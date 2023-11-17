@@ -123,6 +123,23 @@ public class KanjiTable {
     boolean[] getAnswers(){
         return answers;
     }
+
+
+    String[] getKaitoes(){
+        String[] strArr =new String[length];
+        for(int i=0; i<length; i++){
+            strArr[i]=getKaito(i);
+        }
+        return strArr;
+    }
+
+    String[] getMondais(){
+        String[] strArr =new String[length];
+        for(int i=0; i<length; i++){
+            strArr[i]=getWord(i);
+        }
+        return strArr;
+    }
     /*
      * 0	1		2	3		4			5							6		7			8		9
      *

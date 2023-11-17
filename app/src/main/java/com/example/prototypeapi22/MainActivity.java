@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             max=1443;
         }
 
-
         kanjiTable.setNum(min, max, n);
         kanjiTable.setIndex(0);
         Button nextButton = (Button) findViewById(R.id.nextButton);
@@ -63,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     // 次の画面へ
                     Intent intent = new Intent(getApplication(),ResultActivity.class);
                     intent.putExtra("answers", kanjiTable.getAnswers());
+                    intent.putExtra("kaitoes", kanjiTable.getKaitoes());
+                    intent.putExtra("mondais", kanjiTable.getMondais());
                     startActivity(intent);
                 }
             }
