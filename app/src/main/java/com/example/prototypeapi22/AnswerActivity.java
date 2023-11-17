@@ -31,9 +31,12 @@ public class AnswerActivity extends AppCompatActivity {
         TextView ans = (TextView) findViewById(R.id.ans);
         TextView ansMe = (TextView) findViewById(R.id.ans_me);
         TextView trueAns = (TextView) findViewById(R.id.true_ans);
-        String defaultMessage = nextButton.getText().toString();;
+        TextView questionNumberText = (TextView) findViewById(R.id.id2);
 
-        Runnable noName = () -> {
+        String defaultMessage = nextButton.getText().toString();
+
+        Runnable setup = () -> {
+            questionNumberText.setText(String.valueOf(questionNumber[0]));
             Q_1.setText(mondais[questionNumber[0] - 1]);
             ans.setText(yomis[questionNumber[0] - 1]);
             ansMe.setText(kaitoes[questionNumber[0] - 1]);
@@ -50,7 +53,7 @@ public class AnswerActivity extends AppCompatActivity {
                 nextButton.setText(defaultMessage);
             }
         };
-        noName.run();
+        setup.run();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -59,7 +62,7 @@ public class AnswerActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     questionNumber[0] += 1;
-                    noName.run();
+                    setup.run();
                 }
             }
         });
@@ -67,7 +70,7 @@ public class AnswerActivity extends AppCompatActivity {
         previousButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 questionNumber[0] -= 1;
-                noName.run();
+                setup.run();
             }
         });
     }
