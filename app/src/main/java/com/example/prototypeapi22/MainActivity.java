@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,17 +26,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int difficulty= intent.getIntExtra("difficulty", 0);
 
-        int min=0;      //a:0   b:212   c:823
-        int max=1449;    //a:211 b:822   c:1449
+        int min=0;      //a:0   b:207   c:818
+        int max=1443;    //a:206 b:817   c:1443
         if(difficulty==0){
             min=0;
-            max=211;
+            max=206;
         }else if(difficulty==1){
-            min=212;
-            max=822;
+            min=207;
+            max=817;
         }else if(difficulty==2){
-            min=823;
-            max=1449;
+            min=818;
+            max=1443;
         }
 
 
@@ -65,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals("")) {
+                    return source;
+                }
+                for (int i = start; i < end; i++) {
+                    if (!Character.toString(source.charAt(i)).matches("[ぁ-んー]")) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        input.setFilters(filters);
         /*
         final int N = 10;
         final String QUESTION = "犬";
