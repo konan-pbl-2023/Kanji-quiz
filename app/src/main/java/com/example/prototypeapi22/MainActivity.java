@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         KanjiTable kanjiTable = new KanjiTable(getResources());
         int n=10;
-        int difficulty=0;
+        Intent intent = getIntent();
+        int difficulty= intent.getIntExtra("difficulty", 0);
 
         int min=0;      //a:0   b:214   c:825
         int max=1451;    //a:213 b:824   c:1451
