@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         KanjiTable kanjiTable = new KanjiTable(getResources());
-        int n=10;
+        final int N=10;
         Intent intent = getIntent();
         int difficulty= intent.getIntExtra("difficulty", 0);
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             max=1443;
         }
 
-        kanjiTable.setNum(min, max, n);
+        kanjiTable.setNum(min, max, N);
         kanjiTable.setIndex(0);
         Button nextButton = (Button) findViewById(R.id.nextButton);
         TextView question = (TextView) findViewById(R.id.question);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 kanjiTable.setKaito(input.getText().toString());
                 kanjiTable.check();
-                if(kanjiTable.getIndex()+1<n) {
+                if(kanjiTable.getIndex()+1<N) {
                     input.getEditableText().clear();
                     kanjiTable.nextIndex();
                     questionNum.setText(String.valueOf(kanjiTable.getIndex() + 1));
@@ -64,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("answers", kanjiTable.getAnswers());
                     intent.putExtra("kaitoes", kanjiTable.getKaitoes());
                     intent.putExtra("mondais", kanjiTable.getMondais());
+                    intent.putExtra("yomis", kanjiTable.getYomis());
+                    intent.putExtra("allQuestion", N);
                     startActivity(intent);
                 }
             }
