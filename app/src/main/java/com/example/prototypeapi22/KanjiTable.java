@@ -12,8 +12,9 @@ public class KanjiTable {
     // 参考：https://style.potepan.com/articles/18230.html
     String[][] kanjiTable;
     ArrayList<Integer> arr;
+    boolean[] answers;
     int min=0;
-    int max=1628;
+    int max=214;
     int length=10;
     String[] kaitoTable;
     int nowIndex=0;
@@ -29,7 +30,7 @@ public class KanjiTable {
         setNum(min, max, length);
 
         try {
-            InputStream filekaito = resources.getAssets().open("pre1_reading.csv");	// ファイル読み込み
+            InputStream filekaito = resources.getAssets().open("pre1_reading2.csv");	// ファイル読み込み
             InputStreamReader InputStream = new InputStreamReader(filekaito);
             buffReader = new BufferedReader(InputStream);
 
@@ -88,27 +89,40 @@ public class KanjiTable {
     void reload() {
         Collections.shuffle(arr);
         kaitoTable = new String[length];
+        answers = new boolean[length];
         nowIndex=0;
     }
 
 
-    boolean check() {
-        if(getYomi(nowIndex).equals(kaitoTable[nowIndex])) return true;
-        else if(getYomi(nowIndex).equals(kaitoTable[nowIndex]+getOkuri(nowIndex))) return true;
-        else return false;
+    void check() {
+        boolean ans=false;
+        if(getYomi(nowIndex).equals(kaitoTable[nowIndex])) ans=true;
+        else if(getYomi(nowIndex).equals(kaitoTable[nowIndex]+getOkuri(nowIndex))) ans=true;
+
+        answers[nowIndex] = ans;
+        //return ans;
     }
-    boolean check(int index) {
-        if(getYomi(index).equals(kaitoTable[index])) return true;
-        else if(getYomi(index).equals(kaitoTable[index]+getOkuri(index))) return true;
-        else return false;
+    void check(int index) {
+        boolean ans=false;
+        if(getYomi(index).equals(kaitoTable[index])) ans=true;
+        else if(getYomi(index).equals(kaitoTable[index]+getOkuri(index))) ans=true;
+
+        answers[nowIndex] = ans;
+        //return ans;
     }
-    boolean check(int index, String kaitoStr) {
-        if(getYomi(index).equals(kaitoStr)) return true;
-        else if(getYomi(index).equals(kaitoStr+getOkuri(index))) return true;
-        else return false;
+    void check(int index, String kaitoStr) {
+        boolean ans=false;
+        if(getYomi(index).equals(kaitoStr)) ans=true;
+        else if(getYomi(index).equals(kaitoStr+getOkuri(index))) ans=true;
+
+        answers[nowIndex] = ans;
+        //return ans;
     }
 
 
+    boolean[] getAnswers(){
+        return answers;
+    }
     /*
      * 0	1		2	3		4			5							6		7			8		9
      *
