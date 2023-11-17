@@ -7,32 +7,32 @@
 
     <TextView
         android:id="@+id/Q_1"
-        android:layout_width="188dp"
-        android:layout_height="177dp"
+        android:layout_width="360dp"
+        android:layout_height="176dp"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.686"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.081" />
 
     <TextView
         android:id="@+id/ans_me"
-        android:layout_width="194dp"
-        android:layout_height="78dp"
+        android:layout_width="369dp"
+        android:layout_height="97dp"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <TextView
         android:id="@+id/ans"
-        android:layout_width="192dp"
-        android:layout_height="80dp"
+        android:layout_width="368dp"
+        android:layout_height="94dp"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +43,8 @@
 
     <TextView
         android:id="@+id/true_ans"
-        android:layout_width="90dp"
-        android:layout_height="91dp"
+        android:layout_width="124dp"
+        android:layout_height="114dp"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
