@@ -24,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int difficulty= intent.getIntExtra("difficulty", 0);
 
-        int min=0;      //a:0   b:214   c:825
-        int max=1451;    //a:213 b:824   c:1451
+        int min=0;      //a:0   b:212   c:823
+        int max=1449;    //a:211 b:822   c:1449
         if(difficulty==0){
             min=0;
-            max=213;
+            max=211;
         }else if(difficulty==1){
-            min=214;
-            max=824;
+            min=212;
+            max=822;
         }else if(difficulty==2){
-            min=825;
-            max=1451;
+            min=823;
+            max=1449;
         }
 
 
