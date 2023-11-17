@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         int n=10;
         int difficulty=0;
 
-        int min=0;      //a:0   b:215   c:826
-        int max=1452;    //a:214 b:825   c:1452
+        int min=0;      //a:0   b:214   c:825
+        int max=1451;    //a:213 b:824   c:1451
         if(difficulty==0){
             min=0;
-            max=214;
+            max=213;
         }else if(difficulty==1){
-            min=215;
-            max=825;
+            min=214;
+            max=824;
         }else if(difficulty==2){
-            min=826;
-            max=1452;
+            min=825;
+            max=1451;
         }
 
 
