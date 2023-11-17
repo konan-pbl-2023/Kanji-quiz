@@ -140,6 +140,14 @@ public class KanjiTable {
         }
         return strArr;
     }
+
+    String[] getYomis(){
+        String[] strArr =new String[length];
+        for(int i=0; i<length; i++){
+            strArr[i]=getYomi(i);
+        }
+        return strArr;
+    }
     /*
      * 0	1		2	3		4			5							6		7			8		9
      *
