@@ -32,16 +32,18 @@ public class AnswerActivity extends AppCompatActivity {
         TextView ansMe = (TextView) findViewById(R.id.ans_me);
         TextView trueAns = (TextView) findViewById(R.id.true_ans);
 
-        Q_1.setText(mondais[questionNumber[0] - 1]);
-        ans.setText(yomis[questionNumber[0] - 1]);
-        ansMe.setText(kaitoes[questionNumber[0] - 1]);
-        if (answers[questionNumber[0] - 1]) {
-            trueAns.setText("⭕");
-        } else {
-            trueAns.setText("❌");
-        }
-
-        previousButton.setEnabled(false);
+        Runnable noName = () -> {
+            Q_1.setText(mondais[questionNumber[0] - 1]);
+            ans.setText(yomis[questionNumber[0] - 1]);
+            ansMe.setText(kaitoes[questionNumber[0] - 1]);
+            if (answers[questionNumber[0] - 1]) {
+                trueAns.setText("⭕");
+            } else {
+                trueAns.setText("❌");
+            }
+            previousButton.setEnabled(1 < questionNumber[0]);
+        };
+        noName.run();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -49,39 +51,16 @@ public class AnswerActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplication(), StartActivity.class);
                     startActivity(intent);
                 } else {
-                    questionNumber[0] = questionNumber[0] + 1;
-                    Q_1.setText(mondais[questionNumber[0] - 1]);
-                    ans.setText(yomis[questionNumber[0] - 1]);
-                    ansMe.setText(kaitoes[questionNumber[0] - 1]);
-                    if (answers[questionNumber[0] - 1]) {
-                        trueAns.setText("⭕");
-                    } else {
-                        trueAns.setText("❌");
-                    }
-
-                    if (1 < questionNumber[0]) {
-                        previousButton.setEnabled(true);
-                    }
+                    questionNumber[0] += 1;
+                    noName.run();
                 }
             }
         });
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                questionNumber[0] = questionNumber[0] - 1;
-
-                Q_1.setText(mondais[questionNumber[0] - 1]);
-                ans.setText(yomis[questionNumber[0] - 1]);
-                ansMe.setText(kaitoes[questionNumber[0] - 1]);
-                if (answers[questionNumber[0] - 1]) {
-                    trueAns.setText("⭕");
-                } else {
-                    trueAns.setText("❌");
-                }
-
-                if (questionNumber[0] <= 1) {
-                    previousButton.setEnabled(false);
-                }
+                questionNumber[0] -= 1;
+                noName.run();
             }
         });
     }
