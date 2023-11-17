@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals("")) {
+                    return source;
+                }
+                for (int i = start; i < end; i++) {
+                    if (!Character.toString(source.charAt(i)).matches("[ぁ-んー]")) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        input.setFilters(filters);
         /*
         final int N = 10;
         final String QUESTION = "犬";
